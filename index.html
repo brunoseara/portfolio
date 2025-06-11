@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Seára - Engenheiro de Software | TOTVS Protheus</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #d4d4d4;
+            background: linear-gradient(135deg, #1e1e1e 0%, #252526 50%, #2d2d30 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3c3c3c;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #569cd6;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: #4fc3f7;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4fc3f7;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4fc3f7;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #d4d4d4;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #9cdcfe;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(86, 156, 214, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(86, 156, 214, 0.4);
+        }
+
+        /* Code-like floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            font-family: 'Courier New', monospace;
+            color: #569cd6;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            background: #1e1e1e;
+        }
+
+        section:nth-child(even) {
+            background: #252526;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #d4d4d4;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 4rem;
+            color: #1e1e1e;
+            transition: transform 0.3s ease;
+            border: 3px solid #3c3c3c;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: #2d2d30;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #3c3c3c;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: #569cd6;
+            box-shadow: 0 15px 30px rgba(86, 156, 214, 0.2);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #569cd6;
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #d4d4d4;
+        }
+
+        .skill-card p {
+            color: #cccccc;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #569cd6, #4fc3f7);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+
+        .experience-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+        }
+
+        .experience-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+
+        .experience-content {
+            background: #2d2d30;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #3c3c3c;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .experience-content:hover {
+            border-color: #569cd6;
+            box-shadow: 0 10px 25px rgba(86, 156, 214, 0.2);
+        }
+
+        .experience-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+        }
+
+        .experience-item:nth-child(odd) .experience-content::before {
+            right: -20px;
+            border-left-color: #2d2d30;
+        }
+
+        .experience-item:nth-child(even) .experience-content::before {
+            left: -20px;
+            border-right-color: #2d2d30;
+        }
+
+        .experience-dot {
+            position: absolute;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #569cd6;
+            border-radius: 50%;
+            border: 3px solid #1e1e1e;
+        }
+
+        .experience-item:nth-child(odd) .experience-dot {
+            right: -8px;
+        }
+
+        .experience-item:nth-child(even) .experience-dot {
+            left: -8px;
+        }
+
+        .experience-date {
+            color: #4fc3f7;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            color: #d4d4d4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: #569cd6;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: #2d2d30;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #3c3c3c;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #569cd6;
+            box-shadow: 0 15px 30px rgba(86, 156, 214, 0.2);
+        }
+
+        .project-image {
+            height: 300px;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e1e1e;
+            font-size: 2rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #d4d4d4;
+        }
+
+        .project-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #3c3c3c;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #9cdcfe;
+            border: 1px solid #569cd6;
+        }
+
+        .project-link {
+            color: #4fc3f7;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #569cd6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #569cd6, #4fc3f7);
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(86, 156, 214, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e1e1e;
+            color: #cccccc;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #3c3c3c;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .experience-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .experience-dot {
+                left: 12px !important;
+            }
+
+            .experience-content::before {
+                left: -20px !important;
+                border-right-color: #2d2d30 !important;
+                border-left-color: transparent !important;
+            }
+
+            .contact-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <a href="https://github.com/brunoseara" target="_blank" class="logo">Bruno Seára</a>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#experience">Experiência</a></li>
+                <li><a href="#projects">Projetos</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="floating-element">function()</div>
+        <div class="floating-element">SELECT *</div>
+        <div class="floating-element">User Function</div>
+        <div class="hero-content">
+            <h1>Olá! Seja bem vindo! Eu sou o Bruno</h1>
+            <p class="subtitle">Engenheiro de Software & Desenvolvedor ADVPL/TLPP</p>
+            <a href="#contact" class="cta-button">Vamos Conversar</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="https://media.licdn.com/dms/image/v2/C4D03AQEyrWKv1PQakA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1588441315969?e=1755129600&v=beta&t=NJ1ucoZJ8YrqmmqsxzRv4L0D8lIfk5BBr7x48SSMhic"
+                        style="width: 300px; height: 300px; border-radius: 50%;">
+                </div>
+                <div class="about-text">
+                    <p>Sou um desenvolvedor especializado em <strong>ADVPL/TLPP</strong> e sistemas
+                        <strong>TOTVS</strong>,
+                        com <strong>mais de 10 anos de experiência</strong> no desenvolvimento de soluções corporativas
+                        e mais de <strong>20 anos de experiência na áera de TI</strong>.
+                        Atuo na criação de <strong>customizações, relatórios, rotinas automatizadas</strong> e
+                        <strong>integrações</strong> que visam a otimização de processos empresariais.
+                    </p>
+                    <p>Com profundo conhecimento em <strong>SQL Server</strong> e na <strong>arquitetura de sistemas
+                            ERP</strong>, desenvolvo soluções robustas, sob medida para cada negócio, sempre priorizando
+                        <strong>performance, qualidade e aderência aos processos da empresa</strong>.
+                    </p>
+                    <p>
+                        Tenho 38 anos de idade, sou solteiro e não tenho filhos. Nasci e moro desde sempre na cidade de
+                        Itajaí-SC e amo minha cidade. Tenho formação em Tecnólogo em Gestão de TI, Bacharelado em
+                        Engenharia de Software e atualmente cursando MBA em Gestão de Projetos.
+                    </p>
+                    <p>
+                        Iniciei minha carreira na área de TI em 2002 fazendo montagem e manutenção de computadores em
+                        lojas de informática. Desde sempre me envolvi na área de infra, principalmente servidores Linux
+                        e Windows, redes e firewall.
+
+                    </p>
+                    <p> Porém, a partir de 2010 comecei a me envolver mais com suporte a sistemas e processos, dando
+                        treinamentos e desenvolvendo novas soluções para problemas do cotidiano. Então foi nesse momento
+                        que entendi que me sairia bem com sistemas, então comecei a estudar programação e me encontrei
+                        no ADVPL/TLPP.
+                        </p>
+                        <p><strong>Para me conhecer melhor, role esta página até o final.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Minhas Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3>ADVPL/TLPP</h3>
+                    <p>Desenvolvimento de rotinas, customizações, pontos de entrada, MVC, API's REST e integração com
+                        sistemas TOTVS Protheus</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>SQL Server</h3>
+                    <p>Queries avançadas, procedures, triggers, otimização de performance e administração de banco de
+                        dados</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🏢</div>
+                    <h3>Sistemas TOTVS</h3>
+                    <p>Protheus, configuração de módulos, parametrizações e desenvolvimento de soluções integradas</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Integração & APIs</h3>
+                    <p>Webservices, REST APIs, integração com sistemas terceiros e automação de processos</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Relatórios</h3>
+                    <p>Relatórios customizados, TReport, TOTVS BI (Logix) e dashboards gerenciais</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Outras Tecnologias</h3>
+                    <p>Git, Flutter, Java, Gerenciamento de Projetos e metodologias ágeis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experiência Profissional</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2015 - Presente (10 anos)</div>
+                        <h3 class="experience-title">Engenheiro de Software | Desenvolvedor Protheus Sr</h3>
+                        <a target="_blank" href="https://tecadi.com.br/tecnologia-para-logistica"><img
+                                class="experience-company"
+                                src="https://tecadi.com.br/wp-content/uploads/2024/01/LOGO-HORIZONTAL_BRANCA_p.png.webp"
+                                style="width: 160px; height: 40px;"></a>
+                        <p class="experience-description">
+                            Desenvolvimento de soluções customizadas complexas em ADVPL para o sistema Protheus.
+                            Responsável por integrações com sistemas terceiros, otimização de performance e documentação
+                            técnica.
+                            Desenvolvimento de processos especiais para cada cliente atendendo suas necessidades e
+                            fazendo com foquem em seus negócios.
+                        </p>
+                        <p>
+                            <a class="experience-company" target="_blank"
+                                href="https://wiki.tecadi.com.br/pt-br/publico/Integracoes/standard/introducao_api">Exemplo
+                                de documentação</a>
+                        </p>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2018 - 2018 (5 meses)</div>
+                        <h3 class="experience-title">PO - Product Owner Mobile</h3>
+                        <a target="_blank" href="https://systextil.com.br"><img class="experience-company"
+                                src="https://systextil.com.br/wp-content/uploads/elementor/thumbs/logo_systextil-qosdfpxndck78zuo24t3ng22iel69pbl1ct7b717nk.png"
+                                style="width: 160px; height: 40px;"></a>
+
+                        <p class="experience-description">
+                            Aministração e hospedagem de containers (Docker) AWS VCS, Banco de dados Oracle,
+                            Administração do ERP Systêxtil voltado à indústria têxtil e idealização e gerenciamento de
+                            equipes para o desenvolvimento de um novo produto mobile para força de vendas voltado para
+                            que o vendedor concretize as vendas na palma das mãos.
+                        </p>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2017 - 2018 (8 meses)</div>
+                        <h3 class="experience-title">Analista de Infraestrutura Sr</h3>
+                        <a target="_blank" href="https://www.azimutyachts.com.br/"><img
+                                src="https://goboating.com.br/wp-content/uploads/S2.-LOGO_AZIMUT_wshadow.webp"
+                                style="width: 190px; height: 120px;"></a>
+
+                        <p class="experience-description">
+                            Suporte técnico a mais de 500 ativos, gestão de contas e assianturas, Servidores Windows,
+                            Firewall, Sharepoint, Wifi e suporte ao ERP Sênior.
+                        </p>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2006 - 2015 (9 anos)</div>
+                        <h3 class="experience-title">Supervisor de Transportes | Analista de Suporte Sr</h3>
+                        <a target="_blank" href="https://minervafoods.com/"><img
+                                src="https://minervafoods.com/wp-content/uploads/2024/08/logo.webp"
+                                class="experience-company" style="width: 145px; height: 60px;"></a>
+                        <p class="experience-description">
+                            Suporte ao usuário final, manutenção de equipamentos e auxílio na administração do sistema
+                            ERP. Primeira experiência com desenvolvimento ADVPL.
+                        </p>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Principais Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"><a target="_blank"
+                            href="https://tecadi.com.br/wp-content/uploads/2024/11/Miracle-WMS-Coletor-1.jpg.webp"><img
+                                src="https://tecadi.com.br/wp-content/uploads/2024/11/Miracle-WMS-Coletor-1.jpg.webp"
+                                style="width: 110px; height: 210px;"></a></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sistema de gestão de armazéns</h3>
+                        <p class="project-description">Desenvolvemos utilizando o Protheus como backend e comunicando
+                            através de APIs REST um sistema WMS completo e fomos pioneiros na implementação de coletores
+                            Android no sul do Brasil</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">ADVPL</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Android</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🔄</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Integração E-commerce</h3>
+                        <p class="project-description">Integração de todos os fluxos logísitcos com o maior player do
+                            segmento Travel/School mundial. Devido o cliente migrar para o ERP SAP, foi necesário
+                            desenvolver 100% do fluxo e integrações com o cliente, desde o recebimento da mercadoria até
+                            a emissão da nota fiscal. Ao todo foram desenvolvidas mais de 18 interfaces e 3 schedulers.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">E-commerce</span>
+                            <span class="tech-tag">REST API</span>
+                            <span class="tech-tag">Samsonite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Inventário por drones</h3>
+                        <p class="project-description">Integração com drones DJI para realiazação de inventários mais
+                            ágeis e inteligência no processo de invetário 100% customizado, fazendo com o prazo médio de
+                            inventários gerais caísse de 20 dias para 3 dias melhorando a performance e fazendo com que
+                            os clientes voltassem mais rapidamente suas vendas.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Drone</span>
+                            <span class="tech-tag">ADVPL</span>
+                            <span class="tech-tag">Inventário</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Vamos trabalhar juntos?</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Estou sempre interessado em novos desafios e oportunidades para aplicar minha experiência em
+                        ADVPL/TLPP e sistemas TOTVS.</p>
+                    <p> Vamos conversar sobre seu projeto?</p>
+                    <p>📧 bruno.seara@outlook.com</p>
+                    <p>📱 (47) 99108-3389</p>
+                    <p>📍 Itajaí, Santa Catarina</p>
+                </div>
+                <div class="contact-links">
+                    <a target="_blank" href="https://github.com/brunoseara" class="contact-link">GitHub</a>
+                    <a target="_blank" href="https://linkedin.com/in/brunoseara" class="contact-link">LinkedIn</a>
+                    <a target="_blank" href="mailto:bruno.seara@outlook.com" class="contact-link">Email</a>
+                    <a target="_blank" href="https://wa.me/47991083389" class="contact-link">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Bruno Fillipe de Barros Seára. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efeito no header com scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+
+            if (scrolled > 100) {
+                header.style.background = 'rgba(30, 30, 30, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+            } else {
+                header.style.background = 'rgba(30, 30, 30, 0.9)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Animação de entrada para elementos
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animação
+        document.querySelectorAll('.skill-card, .project-card, .experience-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Animação especial para timeline
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    if (entry.target.classList.contains('experience-item')) {
+                        const isOdd = Array.from(entry.target.parentNode.children).indexOf(entry.target) % 2 === 0;
+                        entry.target.style.transform = isOdd ? 'translateX(0)' : 'translateX(0)';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-item').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
+            el.style.transition = 'all 0.8s ease';
+            timelineObserver.observe(el);
+        });
+    </script>
+</body>
+
+</html>
